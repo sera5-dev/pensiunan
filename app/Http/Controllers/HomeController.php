@@ -21,7 +21,7 @@ class HomeController extends Controller
 			Http::attach('file', fopen($request->file, 'r'))->post('https://sera5.id/pensiunan/api/anggota/import');
 		}
 
-		return redirect()->action('\App\Http\Controllers\HomeController@index');
+		return redirect()->route('anggota.index');
 	}
 
 	public function create(Request $request)
@@ -36,6 +36,6 @@ class HomeController extends Controller
 			'os' 								=> $request->input('os')
 		]);
 
-		return redirect()->action('\App\Http\Controllers\HomeController@index');
+		return redirect()->route('anggota.index');
 	}
 }

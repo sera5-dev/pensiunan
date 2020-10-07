@@ -16,7 +16,7 @@
 <body>
 	<h1>Anggota Pensiunan</h1>
 
-	<form action="{{ action('\App\Http\Controllers\HomeController@import') }}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('anggota.import') }}" method="post" enctype="multipart/form-data">
 		<div>
 			<strong>import data</strong>
 		</div>
@@ -30,7 +30,7 @@
 	<div>
 		<strong>create data</strong>
 	</div>
-	<form action="{{ action('\App\Http\Controllers\HomeController@create') }}" method="post">
+	<form action="{{ route('anggota.create') }}" method="post">
 		@csrf
 		<div>
 			<input type="text" name="branch_code" placeholder="branch code" required>

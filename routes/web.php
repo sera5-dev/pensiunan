@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', '\App\Http\Controllers\HomeController@index');
-Route::post('/import', '\App\Http\Controllers\HomeController@import');
-Route::post('/create', '\App\Http\Controllers\HomeController@create');
+Route::get('/', '\App\Http\Controllers\HomeController@index')->name('anggota.index');
+Route::post('/import', '\App\Http\Controllers\HomeController@import')->name('anggota.import');;
+Route::post('/create', '\App\Http\Controllers\HomeController@create')->name('anggota.create');;
