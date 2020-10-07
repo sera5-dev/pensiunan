@@ -15,5 +15,5 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', 			[HomeController::class, 'index'])->name('index');
-Route::get('/import', [HomeController::class, 'import'])->name('import');
-Route::get('/create', [HomeController::class, 'create'])->name('create');
+Route::post('/import', [HomeController::class, 'import'])->name('import');
+Route::post('/create', [HomeController::class, 'create'])->name('create');
