@@ -16,13 +16,13 @@
 <body>
 	<h1>Anggota Pensiunan</h1>
 
+	<div>
+		<strong>import data</strong>
+	</div>
 	<form action="{{ route('anggota.import') }}" method="post" enctype="multipart/form-data">
-		<div>
-			<strong>import data</strong>
-		</div>
 		@csrf
-		<input type="file" name="file" required>
 		<input name="_token" type="hidden" value="{{ csrf_token() }}" />
+		<input type="file" name="file" required>
 		<input type="submit" value="import">
 	</form>
 
@@ -33,6 +33,7 @@
 	</div>
 	<form action="{{ route('anggota.create') }}" method="post">
 		@csrf
+		<input name="_token" type="hidden" value="{{ csrf_token() }}" />
 		<div>
 			<input type="text" name="branch_code" placeholder="branch code" required>
 		</div>
@@ -55,7 +56,6 @@
 			<input type="number" name="os" placeholder="os" required>
 		</div>
 		<div>
-			<input name="_token" type="hidden" value="{{ csrf_token() }}" />
 			<input type="submit" value="create">
 		</div>
 	</form>
