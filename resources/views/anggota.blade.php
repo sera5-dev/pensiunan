@@ -22,6 +22,7 @@
 		</div>
 		@csrf
 		<input type="file" name="file" required>
+		<input name="_token" type="hidden" value="{{ csrf_token() }}" />
 		<input type="submit" value="import">
 	</form>
 
@@ -54,6 +55,7 @@
 			<input type="number" name="os" placeholder="os" required>
 		</div>
 		<div>
+			<input name="_token" type="hidden" value="{{ csrf_token() }}" />
 			<input type="submit" value="create">
 		</div>
 	</form>
