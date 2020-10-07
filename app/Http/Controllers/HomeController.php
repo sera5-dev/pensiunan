@@ -21,10 +21,7 @@ class HomeController extends Controller
 			Http::attach('file', fopen($request->file, 'r'))->post('https://sera5.id/pensiunan/api/anggota/import');
 		}
 
-		$anggota = Http::get('https://sera5.id/pensiunan/api/anggota')->body();
-		$data = json_decode($anggota)->data;
-
-		return view('anggota', ['data' => $data]);
+		return redirect()->route('index');
 	}
 
 	public function create(Request $request)
@@ -39,9 +36,6 @@ class HomeController extends Controller
 			'os' 								=> $request->input('os')
 		]);
 
-		$anggota = Http::get('https://sera5.id/pensiunan/api/anggota')->body();
-		$data = json_decode($anggota)->data;
-
-		return view('anggota', ['data' => $data]);
+		return redirect()->route('.index');
 	}
 }
