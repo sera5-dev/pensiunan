@@ -18,7 +18,7 @@
 	<div>
 		<strong>import data</strong>
 	</div>
-	<form method="POST" action="{{ route('anggota.import') }}" enctype="multipart/form-data">
+	<form method="POST" action="{{ route('import') }}" enctype="multipart/form-data">
 		@csrf
 		@method('POST')
 		{{ csrf_field() }}
@@ -32,7 +32,7 @@
 	<div>
 		<strong>create data</strong>
 	</div>
-	<form method="POST" action="{{ route('anggota.create') }}">
+	<form method="POST" action="{{ route('create') }}">
 		@csrf
 		@method('POST')
 		{{ csrf_field() }}

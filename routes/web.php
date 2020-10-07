@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 				'\App\Http\Controllers\HomeController@index')->name('anggota.index');
-Route::post('/import', 	'\App\Http\Controllers\HomeController@import')->name('anggota.import');
-Route::post('/create', 	'\App\Http\Controllers\HomeController@create')->name('anggota.create');
+Route::get('/', 			[HomeController::class, 'index'])->name('index');
+Route::get('/import', [HomeController::class, 'import'])->name('import');
+Route::get('/create', [HomeController::class, 'create'])->name('create');
