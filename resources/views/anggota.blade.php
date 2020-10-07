@@ -18,13 +18,13 @@
 	<div>
 		<strong>import data</strong>
 	</div>
-	<form method="post" action="{{ route('anggota.import') }}" enctype="multipart/form-data">
+	<form method="POST" action="{{ url('anggota.import') }}" enctype="multipart/form-data">
 		@csrf
 		@method('POST')
 		{{ csrf_field() }}
 		<input name="_token" type="hidden" value="{{ csrf_token() }}" />
 		<input type="file" name="file" required>
-		<input type="submit" value="import">
+		<input type="submit" name="submit" value="import">
 	</form>
 
 	<br>
@@ -32,7 +32,7 @@
 	<div>
 		<strong>create data</strong>
 	</div>
-	<form method="post" action="{{ route('anggota.create') }}">
+	<form method="POST" action="{{ url('anggota.create') }}">
 		@csrf
 		@method('POST')
 		{{ csrf_field() }}
@@ -59,7 +59,7 @@
 			<input type="number" name="os" placeholder="os" required>
 		</div>
 		<div>
-			<input type="submit" value="create">
+			<input type="submit" name="submit" value="create">
 		</div>
 	</form>
 
