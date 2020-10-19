@@ -36,6 +36,6 @@ class HomeController extends Controller
 			'os' 								=> $request->input('os')
 		]);
 
-		return redirect()->route('.index');
+		return redirect()->route('index');
 	}
 }
