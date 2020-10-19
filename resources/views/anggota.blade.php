@@ -1,100 +1,106 @@
-<html lang="en">
+@extends('main')
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pensiunan</title>
-	<style>
-		body {
-			margin-left: 15%;
-			margin-right: 15%;
-		}
-	</style>
-</head>
+@section('title', 'Anggota')
+@section('anggota', 'active')
 
-<body>
-	<h1>Anggota Pensiunan</h1>
-
-	<div>
-		<strong>import data</strong>
+@section('content')
+<div class="row">
+	<div class="col-xl-6 col-lg-6">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Create Anggota</h6>
+			</div>
+			<div class="card-body">
+				<form method="POST" action="{{ route('create') }}">
+					@csrf
+					<div class="form-group">
+						<input class="form-control" type="text" name="branch_code" placeholder="branch code" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="branch_location" placeholder="branch location" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="loan_type" placeholder="loan type" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="number" name="deal_ref" placeholder="deal ref" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="short_name" placeholder="short name" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="date" name="start_date" placeholder="start date" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="number" name="os" placeholder="os" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control btn btn-primary" type="submit" name="submit" value="create">
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-	<form method="POST" action="{{ route('import') }}" enctype="multipart/form-data">
-		@csrf
-		@method('POST')
-		{{ csrf_field() }}
-		<input name="_token" type="hidden" value="{{ csrf_token() }}" />
-		<input type="file" name="file" required>
-		<input type="submit" name="submit" value="import">
-	</form>
-
-	<br>
-
-	<div>
-		<strong>create data</strong>
+	<div class="col-xl-6 col-lg-6">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Import Data</h6>
+			</div>
+			<div class="card-body">
+				<form method="POST" action="{{ route('import') }}" enctype="multipart/form-data">
+					@csrf
+					@method('POST')
+					{{ csrf_field() }}
+					<input name="_token" type="hidden" value="{{ csrf_token() }}" />
+					<div class="form-group">
+						<input class="form-control-file" type="file" name="file" required>
+					</div>
+					<div class="form-group">
+						<input class="form-control btn btn-primary" type="submit" name="import" value="import">
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-	<form method="POST" action="{{ route('create') }}">
-		@csrf
-		@method('POST')
-		{{ csrf_field() }}
-		<input name="_token" type="hidden" value="{{ csrf_token() }}" />
-		<div>
-			<input type="text" name="branch_code" placeholder="branch code" required>
+</div>
+<div class="row">
+	<div class="col-xl-12 col-lg-12">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Daftar Anggota</h6>
+			</div>
+			<div class="card-body">
+				<table class="table" id="dataTable">
+					<thead>
+						<tr>
+							<th colspan="2">Branch</th>
+							<th rowspan="2">Loan Type</th>
+							<th rowspan="2">Deal Ref</th>
+							<th rowspan="2">Short Name</th>
+							<th rowspan="2">Start Data</th>
+							<th rowspan="2">OS</th>
+						</tr>
+						<tr>
+							<th>Code</th>
+							<th>Location</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($data as $data)
+						<tr>
+							<td>{{$data->branch_code}}</td>
+							<td>{{$data->branch_location}}</td>
+							<td>{{$data->loan_type}}</td>
+							<td>{{$data->deal_ref}}</td>
+							<td>{{$data->short_name}}</td>
+							<td>{{$data->start_date}}</td>
+							<td>{{$data->os}}</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<div>
-			<input type="text" name="branch_location" placeholder="branch location" required>
-		</div>
-		<div>
-			<input type="text" name="loan_type" placeholder="loan type" required>
-		</div>
-		<div>
-			<input type="number" name="deal_ref" placeholder="deal ref" required>
-		</div>
-		<div>
-			<input type="text" name="short_name" placeholder="short name" required>
-		</div>
-		<div>
-			<input type="date" name="start_date" placeholder="start date" required>
-		</div>
-		<div>
-			<input type="number" name="os" placeholder="os" required>
-		</div>
-		<div>
-			<input type="submit" name="submit" value="create">
-		</div>
-	</form>
-
-	<br>
-
-	<table border=1>
-		<div><strong>Daftar Anggota</strong></div>
-		<thead>
-			<tr>
-				<th colspan="2">Branch</th>
-				<th rowspan="2">Loan Type</th>
-				<th rowspan="2">Deal Ref</th>
-				<th rowspan="2">Short Name</th>
-				<th rowspan="2">Start Data</th>
-				<th rowspan="2">OS</th>
-			</tr>
-			<tr>
-				<th>Code</th>
-				<th>Location</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach($data as $data)
-			<tr>
-				<td>{{$data->branch_code}}</td>
-				<td>{{$data->branch_location}}</td>
-				<td>{{$data->loan_type}}</td>
-				<td>{{$data->deal_ref}}</td>
-				<td>{{$data->short_name}}</td>
-				<td>{{$data->start_date}}</td>
-				<td>{{$data->os}}</td>
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
-</body>
-
-</html>
+	</div>
+</div>
+@endsection
